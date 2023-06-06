@@ -10,7 +10,7 @@ public class CharacterSelected : MonoBehaviour
 
     private Coroutine currentCoroutine = null;
 
-    [SerializeField] int difficulty;
+    [SerializeField] int difficulty=2;
     
     void Awake()
     {
@@ -20,11 +20,17 @@ public class CharacterSelected : MonoBehaviour
             DestroyImmediate(this);
         DontDestroyOnLoad(gameObject);
     }
+
     public Character CurrentCharacter => currentCharacter;
     public int Difficulty => difficulty;
 
+    public void Initialize(){
+      SetDifficulty(3);
+    }
+
     public void SetDifficulty(int _difficulty)
     {
+        SelectDifficultyManager._instance.SetCurrentSelected(_difficulty-2);
         difficulty = _difficulty;
     }
     
